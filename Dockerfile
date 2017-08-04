@@ -16,7 +16,7 @@ RUN set -ex \
     tiff-dev \
     libffi-dev \
     tk-dev \
-    && update-ca-certificates \
+    && apk --no-cache add --update openssl \
     && mkdir -p /opt/ehForwarderBot/storage \
     && chmod +rw /opt/ehForwarderBot/storage \
     && wget https://bootstrap.pypa.io/get-pip.py \
