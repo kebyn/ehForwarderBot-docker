@@ -32,7 +32,7 @@ RUN set -ex \
     && tar xvf ehForwarderBot.tar.gz --strip-components=1 \
     && rm -f ehForwarderBot.tar.gz \
     && pip3 install -r requirements.txt \
-    && rm -rf /root/.cache
+    && rm -rf /root/.cache \
     && apk del gcc wget
 
 VOLUME /opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db
