@@ -29,8 +29,11 @@ RUN set -ex \
     && rm -f get-pip.py
 
 WORKDIR /opt/ehForwarderBot
+
+ENV VERSION 1.6.4
+
 RUN set -ex \
-    && wget https://github.com/blueset/ehForwarderBot/archive/v1.6.2.tar.gz -O ehForwarderBot.tar.gz \
+    && wget https://github.com/blueset/ehForwarderBot/archive/v$VERSION.tar.gz -O ehForwarderBot.tar.gz \
     && tar xvf ehForwarderBot.tar.gz --strip-components=1 \
     && rm -f ehForwarderBot.tar.gz \
     && pip3 install -r requirements.txt \
