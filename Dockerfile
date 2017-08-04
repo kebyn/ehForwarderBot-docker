@@ -4,6 +4,7 @@ MAINTAINER kebyn <kebyn@sina.com>
 RUN set -ex \
     && apk --no-cache add \
     wget \
+    openssl-dev \
     ca-certificates \
     python3-dev \
     gcc \
