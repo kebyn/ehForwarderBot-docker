@@ -21,8 +21,7 @@ RUN set -ex \
     && chmod +rw /opt/ehForwarderBot/storage \
     && wget https://bootstrap.pypa.io/get-pip.py \
     && python3 get-pip.py \
-    && rm -f get-pip.py \
-    && apk del gcc wget
+    && rm -f get-pip.py
 
 WORKDIR /opt/ehForwarderBot
 
@@ -34,6 +33,7 @@ RUN set -ex \
     && rm -f ehForwarderBot.tar.gz \
     && pip3 install -r requirements.txt \
     && rm -rf /root/.cache
+    && apk del gcc wget
 
 VOLUME /opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db
 
