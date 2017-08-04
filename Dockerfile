@@ -8,6 +8,7 @@ RUN set -ex \
     python3-dev \
     gcc \
     musl-dev \
+    lcms2-dev \
     jpeg-dev \
     zlib-dev \
     freetype-dev \
