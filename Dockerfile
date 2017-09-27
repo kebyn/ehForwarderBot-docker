@@ -15,7 +15,7 @@ RUN set -ex \
        curl \
        tar \
     && mkdir -p /opt/ehForwarderBot/storage \
-    && chmod +rw /opt/ehForwarderBot/storage \
+    && chmod +rw /opt/ehForwarderBot/storage
 
 WORKDIR /opt/ehForwarderBot
 
