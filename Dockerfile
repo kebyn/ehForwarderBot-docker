@@ -1,41 +1,35 @@
-FROM alpine:3.6
+FROM alpine:latest
 MAINTAINER kebyn <kebyn@sina.com>
+
+ENV LANG C.UTF-8
+ENV TZ Asia/Shanghai
 
 RUN set -ex \
     && apk --no-cache add \
-    wget \
-    ca-certificates \
-    python3-dev \
-    gcc \
-    musl-dev \
-    lcms2-dev \
-    jpeg-dev \
-    zlib-dev \
-    freetype-dev \
-    openjpeg-dev \
-    tiff-dev \
-    libffi-dev \
-    tk-dev \
-    libmagic \
-    ffmpeg \
-    && apk --no-cache add --update openssl \
+       python3 \
+       libmagic \
+       ffmpeg \
+       py3-numpy \
+       py3-pillow \
+    && apk add --update --no-cache --virtual .deps \
+       curl \
+       tar \
     && mkdir -p /opt/ehForwarderBot/storage \
     && chmod +rw /opt/ehForwarderBot/storage \
-    && wget https://bootstrap.pypa.io/get-pip.py \
-    && python3 get-pip.py \
-    && rm -f get-pip.py
 
 WORKDIR /opt/ehForwarderBot
 
-ENV VERSION 1.6.4
-
 RUN set -ex \
-    && wget https://github.com/blueset/ehForwarderBot/archive/v$VERSION.tar.gz -O ehForwarderBot.tar.gz \
+    && curl -L -q -o ehForwarderBot.tar.gz \
+       $( \
+       curl -s https://api.github.com/repos/blueset/ehForwarderBot/tags | \
+       grep tarball_url | head -n 1 | awk -F'"' '{print $4}'\ 
+       ) \
     && tar xvf ehForwarderBot.tar.gz --strip-components=1 \
     && rm -f ehForwarderBot.tar.gz \
     && pip3 install -r requirements.txt \
     && rm -rf /root/.cache \
-    && apk del gcc wget
+    && apk del .deps
 
 VOLUME /opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db
 
