@@ -7,5 +7,5 @@ wget -o config.py https://raw.githubusercontent.com/blueset/ehForwarderBot/maste
 ```
 2. getting-started
 ```
-docker run -d --restart --volume tgdata.db:/opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db --volume config.py:/opt/ehForwarderBot/config.py
+docker run -d --restart --volume tgdata.db:/opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db --volume config.py:/opt/ehForwarderBot/config.py kebyn/ehForwarderBot-docker
 ```
