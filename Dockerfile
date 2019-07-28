@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM python:alpine
 MAINTAINER kebyn <kebyn@sina.com>
 
 ENV LANG C.UTF-8
@@ -6,31 +6,36 @@ ENV TZ Asia/Shanghai
 
 RUN set -ex \
    && apk --no-cache add \
-      python3 \
+      python3-dev \
       libmagic \
       ffmpeg \
       py3-numpy \
       py3-pillow \
+      py3-ruamel.yaml \
+      git \
       gcc \
-      python3-dev \
+      zlib-dev \
       musl-dev \
       libffi-dev \
       openssl-dev \
+      jpeg-dev \
    && apk add --update --no-cache --virtual .deps \
+      curl \
       tar \
-      git \
-   && git clone -b v1 https://github.com/blueset/ehForwarderBot.git /opt/ehForwarderBot \
-   && mkdir -p /opt/ehForwarderBot/storage \
-   && chmod +rw /opt/ehForwarderBot/storage
-   
-
-WORKDIR /opt/ehForwarderBot
-
-RUN set -ex \
-   && pip3 install -r requirements.txt \
-   && rm -rf /root/.cache \
+   && curl -sLq -o ehForwarderBot.tar.gz \
+   $( \
+   curl -s https://api.github.com/repos/blueset/ehForwarderBot/tags | \
+   grep tarball_url | head -n 1 | awk -F'"' '{print $4}'\ 
+   ) \
+   && tar xf ehForwarderBot.tar.gz --strip-components=1 \
+   && rm -f ehForwarderBot.tar.gz \
+   && pip3 install efb-telegram-master \
+   && pip3 install efb-wechat-slave \
+   && mkdir -p /root/.ehforwarderbot/profiles/default/blueset.telegram \
    && apk del .deps
 
-VOLUME /opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db
+COPY config.yaml /root/.ehforwarderbot/profiles/default/
 
-ENTRYPOINT ["python3", "main.py"]
+VOLUME /root/.ehforwarderbot/profiles/default/blueset.telegram
+
+ENTRYPOINT ["ehforwarderbot"]
