@@ -1,9 +1,9 @@
 # ehForwarderBot-docker
-## ehForwarderBot docker image from alpine
-[![Github All Releases](https://img.shields.io/github/downloads/kebyn/ehForwarderBot-docker/total.svg)](https://github.com/kebyn/ehForwarderBot-docker)  [![GitHub tag](https://img.shields.io/github/tag/kebyn/ehForwarderBot-docker.svg)](https://github.com/kebyn/ehForwarderBot-docker)
-1. [enable channel](https://ehforwarderbot.readthedocs.io/en/latest/getting-started/)
+## V1 version
+### ehForwarderBot docker image from alpine
+![Docker Pulls](https://img.shields.io/docker/pulls/kebyn/ehforwarderbot-docker)  [![GitHub tag](https://img.shields.io/github/tag/kebyn/ehForwarderBot-docker.svg)](https://github.com/kebyn/ehForwarderBot-docker)
 ```
-wget -o config.py https://raw.githubusercontent.com/blueset/ehForwarderBot/master/config.sample.py
+wget -o config.py https://raw.githubusercontent.com/blueset/ehForwarderBot/v1/config.sample.py
 ```
 2. getting-started
 ```
