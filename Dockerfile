@@ -18,9 +18,9 @@ RUN set -ex \
       musl-dev \
       libffi-dev \
       openssl-dev \
-   && pip3 install ehforwarderbot \
-   && pip3 install efb-telegram-master \
-   && pip3 install efb-wechat-slave \
+   && pip3 install git+https://github.com/blueset/ehforwarderbot.git \
+   && pip3 install git+https://github.com/blueset/efb-telegram-master.git \
+   && pip3 install git+https://github.com/blueset/efb-wechat-slave.git \
    && mkdir -p /root/.ehforwarderbot/profiles/default/blueset.telegram
 
 COPY config.yaml /root/.ehforwarderbot/profiles/default/
