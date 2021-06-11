@@ -35,7 +35,7 @@
   - edit config.yaml
 2. getting-started
     ```
-    docker run -d --restart --volume $(pwd)/blueset.telegram:/root/.ehforwarderbot/profiles/default/blueset.telegram/ kebyn/ehForwarderBot-docker
+    docker run -d --restart --volume $(pwd)/blueset.telegram:/root/.ehforwarderbot/profiles/default/blueset.telegram/ kebyn/ehforwarderbot-docker
     ```
 ## V1 version
 1. config
@@ -45,5 +45,5 @@
   - edit config.py
 2. getting-started
   ```
-  docker run -d --restart --volume $(pwd)/tgdata.db:/opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db --volume $(pwd)/config.py:/opt/ehForwarderBot/config.py kebyn/ehForwarderBot-docker:release-1.0
+  docker run -d --restart --volume $(pwd)/tgdata.db:/opt/ehForwarderBot/plugins/eh_telegram_master/tgdata.db --volume $(pwd)/config.py:/opt/ehForwarderBot/config.py kebyn/ehforwarderbot-docker:release-1.0
   ```
